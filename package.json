@@ -1,7 +1,7 @@
 {
   "name": "developer-profile-generator",
-  "version": "1.0.0",
-  "description": "build a profile page from information on github",
+  "version": "0.0.1",
+  "description": "generate pdf from github profile",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/kjenkins5678/Developer-Profile-Generator#readme",
   "dependencies": {
-    "electron": "^7.1.9",
-    "electron-html-to": "^2.6.0"
+    "electron": "5.0.12",
+    "electron-html-to": "2.6.0"
   }
 }
