@@ -1,0 +1,22 @@
+{
+  "name": "developer-profile-generator",
+  "version": "1.0.0",
+  "description": "build a profile page from information on github",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kjenkins5678/Developer-Profile-Generator.git"
+  },
+  "author": "k jenkins",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kjenkins5678/Developer-Profile-Generator/issues"
+  },
+  "homepage": "https://github.com/kjenkins5678/Developer-Profile-Generator#readme",
+  "dependencies": {
+    "electron-html-to": "^2.6.0"
+  }
+}
