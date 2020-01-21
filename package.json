@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/kjenkins5678/Developer-Profile-Generator#readme",
   "dependencies": {
+    "electron": "^7.1.9",
     "electron-html-to": "^2.6.0"
   }
 }
