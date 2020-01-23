@@ -1,35 +1,47 @@
-// var fs = require('fs'),
-//     convertFactory = require('electron-html-to');
- 
-// var conversion = convertFactory({
-//   converterPath: convertFactory.converters.PDF
-// });
- 
-// conversion({ html: '<h1>Hello World</h1>' }, function(err, result) {
-//   if (err) {
-//     return console.error(err);
-//   }
- 
-//   console.log(result.numberOfPages);
-//   console.log(result.logs);
-//   result.stream.pipe(fs.createWriteStream('the_result.pdf'));
-//   conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
-// });
+const fs = require("fs");
+const axios = require("axios");
+const inquirer = require("inquirer");
+const convertFactory = require('electron-html-to');
+// var htmlstring = null;
 
-const fs = require('fs');
-// const convertFactory = require('electron-html-to');
-fs.readFile('index.html', 'utf8', (err, htmlString) => {
-  // add local path in case your HTML has relative paths
-  htmlString = htmlString.replace(/href="|src="/g, match => {
-    return console.log(match + 'file://path/to/you/base/public/directory');
-  });
-  // const conversion = convertFactory({
-  //   converterPath: convertFactory.converters.PDF,
-  //   allowLocalFilesAccess: true
+inquirer
+  .prompt({
+    message: "Enter your GitHub username:",
+    name: "username"
+  })
+  .then(function({ username }) {
+    const queryUrl = `https://api.github.com/users/${username}`
+
+    axios.get(queryUrl).then(function(res) {
+      var htmlstring = `
+      <img src=${res.data.avatar_url} alt="Github User Profile Avatar">
+      `
+      // console.log("inside function: " + htmlstring)
+      var conversion = convertFactory({
+      converterPath: convertFactory.converters.PDF
+    });
+      
+    conversion({ html: htmlstring }, function(err, result) {
+      if (err) {
+        return console.error(err);
+      }
+      
+      console.log(result.numberOfPages);
+      console.log(result.logs);
+      result.stream.pipe(fs.createWriteStream('result.pdf'));
+      conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
+    });
+
+      // return(htmlstring);
+      })
+
+  })
+  // .then(function(htmlstring){
+  //   console.log("outside function: " + htmlstring);
+    
+
   // });
-  // conversion({ html: htmlString }, (err, result) => {
-  //   if (err) return console.error(err);
-  //   result.stream.pipe(fs.createWriteStream('result.pdf'));
-  //   conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
-  // });
-});
+    
+    
+  
+  
