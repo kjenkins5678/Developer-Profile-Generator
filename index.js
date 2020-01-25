@@ -14,7 +14,10 @@ inquirer
 
     axios.get(queryUrl).then(function(res) {
       var htmlstring = `
-      <img src=${res.data.avatar_url} alt="Github User Profile Avatar">
+      <img src=${res.data.avatar_url} alt="Github User Profile Avatar">\n
+      <h1>${res.data.name}</h1>\n
+      <h4>${res.data.location}</h4>\n
+      <a href=${res.data.html_url}>Github</a>
       `
       // console.log("inside function: " + htmlstring)
       var conversion = convertFactory({
